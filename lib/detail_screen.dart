@@ -37,7 +37,10 @@ class DetailMobilePage extends StatelessWidget {
           children: <Widget>[
             Stack(
               children: <Widget>[
-                Image.asset(place.imageAsset),
+                Hero(
+                  tag: place.name,
+                  child: Image.asset(place.imageAsset),
+                ),
                 SafeArea(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -174,12 +177,29 @@ class _DetailWebPageState extends State<DetailWebPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                const Text(
-                  'Wisata Bandung',
-                  style: TextStyle(
-                    fontFamily: 'Staatliches',
-                    fontSize: 32,
-                  ),
+                Row(
+                  children:[
+                    CircleAvatar(
+                      backgroundColor: Colors.grey,
+                      child: IconButton(
+                        icon: const Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    const Text(
+                      'Wisata Bandung',
+                      style: TextStyle(
+                        fontFamily: 'Staatliches',
+                        fontSize: 32,
+                      ),
+                    ),
+                  ]
                 ),
                 const SizedBox(height: 32),
                 Row(
@@ -189,8 +209,11 @@ class _DetailWebPageState extends State<DetailWebPage> {
                       child: Column(
                         children: [
                           ClipRRect(
-                            child: Image.asset(widget.place.imageAsset),
                             borderRadius: BorderRadius.circular(10),
+                            child: Hero(
+                              tag: widget.place.name,
+                              child: Image.asset(widget.place.imageAsset),
+                            ),
                           ),
                           const SizedBox(height: 16),
                           Scrollbar(

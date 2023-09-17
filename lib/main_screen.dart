@@ -106,9 +106,12 @@ class TourismPlaceGrid extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Expanded(
-                    child: Image.asset(
-                      place.imageAsset,
-                      fit: BoxFit.cover,
+                    child: Hero(
+                      tag: place.name,
+                      child: Image.asset(
+                        place.imageAsset,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 8),
